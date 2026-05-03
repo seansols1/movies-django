@@ -3,11 +3,12 @@
 <div class="latestnew">
 	<div class="container">
 		<div class="row ipad-width">
+
 			<div class="col-md-8">
 
 				<div class="ads">
 					{% for ad in ads %}
-						{% if ad.section == "news" %}
+						{% if ad.section == "banner" %}
 						<img src="{% static ad.img_src %}" alt="" width="{{ ad.img_width }}" height="{{ ad.img_height }}">
 						{% endif %}
 					{% endfor %}
@@ -21,7 +22,8 @@
 				    <div class="tab-content">
 				        <div id="tab31" class="tab active">
 				            <div class="row">
-								{% for news in news_list %}
+
+								{% for news in news_list|slice:":1" %}
 				            	<div class="blog-item-style-1">
 				            		<img src="{% static news.img_src %}" alt="{{ news.img_alt }}" width="{{ news.img_width }}" height="{{ news.img_height }}">
 				            		<div class="blog-it-infor">
@@ -31,6 +33,7 @@
 				            		</div>
 				            	</div>
 								{% endfor %}
+
 				            </div>
 				        </div>				        
 				    </div>
@@ -43,31 +46,44 @@
 					</div>
 
 					<div class="more-items">
+
 						<div class="left">
-							{% for news in news_list %}
+							{% for news in news_list|slice:"1:3" %}
 							<div class="more-it">
 								<h6><a href="#">{{ news.title }}</a></h6>
 								<span class="time">{{ news.time }}</span>
 							</div>
 							{% endfor %}
 						</div>
+
+						<div class="right">
+							{% for news in news_list|slice:"3:5" %}
+							<div class="more-it">
+								<h6><a href="#">{{ news.title }}</a></h6>
+								<span class="time">{{ news.time }}</span>
+							</div>
+							{% endfor %}
+						</div>
+
 					</div>
 				</div>
 
 			</div>
 
 			<div class="col-md-4">
-				<div class="sidebar">					
+				<div class="sidebar">
+
 					<div class="sb-twitter sb-it">
 						<h4 class="sb-title">Tweet to us</h4>
 						<div class="slick-tw">
 							{% for tweet in tweets %}
-							<div class="tweet item" id="">
+							<div class="tweet item">
 								{{ tweet.content }}
 							</div>
 							{% endfor %}
 						</div>					
 					</div>
+
 				</div>
 			</div>
 
